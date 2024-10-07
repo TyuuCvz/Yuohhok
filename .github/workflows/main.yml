@@ -1,0 +1,22 @@
+name: Windows - Iperius
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 9999
+    
+    steps:
+      - name: Downloading & Installing
+        run: |
+          Invoke-WebRequest -Uri "https://gitlab.com/Baozaoxao/aoachonatrdp_iperius/-/raw/main/down.bat" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+
+      - name: Connect to RDP
+        run: cmd /c show.bat
+
+      - name: RDP Running Time
+        run: cmd /c loop.bat
